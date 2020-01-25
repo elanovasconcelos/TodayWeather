@@ -12,6 +12,9 @@ final class DetailTableViewCell: UITableViewCell {
 
     static let identifier = "DetailTableViewCell"
     
+    @IBOutlet var nameLabel: BaseLabel!
+    @IBOutlet var informationLabel: BaseLabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

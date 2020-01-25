@@ -17,6 +17,10 @@
 		030CED2123DCA0BB00AEFB58 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030CED2023DCA0BB00AEFB58 /* UITableViewExtension.swift */; };
 		030CED2423DCA6B200AEFB58 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030CED2223DCA6B200AEFB58 /* DetailTableViewCell.swift */; };
 		030CED2523DCA6B200AEFB58 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 030CED2323DCA6B200AEFB58 /* DetailTableViewCell.xib */; };
+		030CED2823DCAE4600AEFB58 /* BaseLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030CED2723DCAE4600AEFB58 /* BaseLabel.swift */; };
+		030CED2B23DCB36C00AEFB58 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030CED2A23DCB36C00AEFB58 /* MainViewModel.swift */; };
+		030CED2F23DCBE1800AEFB58 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030CED2E23DCBE1800AEFB58 /* Forecast.swift */; };
+		030CED3123DCBE6700AEFB58 /* Currently.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030CED3023DCBE6700AEFB58 /* Currently.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,10 @@
 		030CED2023DCA0BB00AEFB58 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		030CED2223DCA6B200AEFB58 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		030CED2323DCA6B200AEFB58 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
+		030CED2723DCAE4600AEFB58 /* BaseLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLabel.swift; sourceTree = "<group>"; };
+		030CED2A23DCB36C00AEFB58 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		030CED2E23DCBE1800AEFB58 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		030CED3023DCBE6700AEFB58 /* Currently.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currently.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +93,8 @@
 		030CECF523DBAA6300AEFB58 /* TodayWeather */ = {
 			isa = PBXGroup;
 			children = (
+				030CED2C23DCBD8600AEFB58 /* Model */,
+				030CED2923DCB32A00AEFB58 /* ViewModel */,
 				030CED1B23DC980600AEFB58 /* View */,
 				030CED1823DC697000AEFB58 /* Extension */,
 				030CECF623DBAA6300AEFB58 /* AppDelegate.swift */,
@@ -118,10 +128,44 @@
 		030CED1B23DC980600AEFB58 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				030CED2623DCAE1C00AEFB58 /* Base */,
 				030CED2223DCA6B200AEFB58 /* DetailTableViewCell.swift */,
 				030CED2323DCA6B200AEFB58 /* DetailTableViewCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		030CED2623DCAE1C00AEFB58 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				030CED2723DCAE4600AEFB58 /* BaseLabel.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		030CED2923DCB32A00AEFB58 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				030CED2A23DCB36C00AEFB58 /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		030CED2C23DCBD8600AEFB58 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				030CED2D23DCBDAC00AEFB58 /* Weather */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		030CED2D23DCBDAC00AEFB58 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				030CED2E23DCBE1800AEFB58 /* Forecast.swift */,
+				030CED3023DCBE6700AEFB58 /* Currently.swift */,
+			);
+			path = Weather;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,11 +270,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				030CED2423DCA6B200AEFB58 /* DetailTableViewCell.swift in Sources */,
+				030CED2823DCAE4600AEFB58 /* BaseLabel.swift in Sources */,
+				030CED3123DCBE6700AEFB58 /* Currently.swift in Sources */,
 				030CECFB23DBAA6300AEFB58 /* MainViewController.swift in Sources */,
 				030CECF723DBAA6300AEFB58 /* AppDelegate.swift in Sources */,
+				030CED2F23DCBE1800AEFB58 /* Forecast.swift in Sources */,
 				030CED1A23DC69AA00AEFB58 /* UIViewExtension.swift in Sources */,
 				030CED2123DCA0BB00AEFB58 /* UITableViewExtension.swift in Sources */,
 				030CECF923DBAA6300AEFB58 /* SceneDelegate.swift in Sources */,
+				030CED2B23DCB36C00AEFB58 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,8 @@ class MainViewController: UIViewController {
         return newTableView
     }()
     
+    private let viewModel = MainViewModel()
+    
     //MARK: -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,17 +48,31 @@ class MainViewController: UIViewController {
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return detailCell(tableView: tableView, indexPath: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.numberOfRowsInSection(section)
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections()
+    }
+}
+
+// MARK: - Table Cells
+private extension MainViewController {
+    
+    func detailCell(tableView: UITableView, indexPath: IndexPath) -> DetailTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DetailTableViewCell.identifier, for: indexPath) as! DetailTableViewCell
+        
+        let detail = viewModel.detail(for: indexPath)
+        
+        cell.nameLabel.text = detail.title
+        cell.informationLabel.text = detail.information
         
         return cell
     }
-    
-    
 }
-
-

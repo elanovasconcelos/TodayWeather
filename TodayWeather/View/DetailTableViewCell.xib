@@ -16,8 +16,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="351" height="97"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4O5-OQ-o1d">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4O5-OQ-o1d" customClass="BaseLabel" customModule="TodayWeather" customModuleProvider="target">
                         <rect key="frame" x="20" y="20" width="42" height="57"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLD-lb-E8z" customClass="BaseLabel" customModule="TodayWeather" customModuleProvider="target">
+                        <rect key="frame" x="70" y="20" width="42" height="57"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -25,11 +31,19 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="4O5-OQ-o1d" secondAttribute="bottom" constant="20" symbolic="YES" id="AoD-G9-6Cm"/>
+                    <constraint firstAttribute="bottom" secondItem="FLD-lb-E8z" secondAttribute="bottom" constant="20" symbolic="YES" id="DXy-jH-az0"/>
                     <constraint firstItem="4O5-OQ-o1d" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="KSV-6v-wIz"/>
                     <constraint firstItem="4O5-OQ-o1d" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" symbolic="YES" id="QFD-kT-fNL"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FLD-lb-E8z" secondAttribute="trailing" constant="20" symbolic="YES" id="TB0-E2-j1g"/>
+                    <constraint firstItem="FLD-lb-E8z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" symbolic="YES" id="V2D-vn-ypR"/>
+                    <constraint firstItem="FLD-lb-E8z" firstAttribute="leading" secondItem="4O5-OQ-o1d" secondAttribute="trailing" constant="8" symbolic="YES" id="amj-Pw-FjY"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="informationLabel" destination="FLD-lb-E8z" id="EXQ-hU-a3s"/>
+                <outlet property="nameLabel" destination="4O5-OQ-o1d" id="jV7-Au-sr2"/>
+            </connections>
             <point key="canvasLocation" x="154.34782608695653" y="162.38839285714286"/>
         </tableViewCell>
     </objects>
