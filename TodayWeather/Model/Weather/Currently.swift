@@ -17,6 +17,7 @@ struct Currently: Decodable {
     let humidity: Double?
     let windSpeed: Double?
     let uvIndex: Double?
+    let apparentTemperature: Double?
     
     /*
      "time": 1537882620,
@@ -38,4 +39,11 @@ struct Currently: Decodable {
      "ozone": 321.6
      
      */
+}
+
+//MARK: - Debug
+extension Currently {
+    static func debugValue() -> Currently {
+        return Currently(time: 1537882620, summary: "Clear", icon: "clear-day", temperature: 40.46, humidity: 0.65, windSpeed: 11.15, uvIndex: 0, apparentTemperature: 33.75)
+    }
 }
