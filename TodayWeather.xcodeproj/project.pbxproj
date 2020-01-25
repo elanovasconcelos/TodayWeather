@@ -13,6 +13,10 @@
 		030CED0023DBAA6600AEFB58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 030CECFF23DBAA6600AEFB58 /* Assets.xcassets */; };
 		030CED0323DBAA6600AEFB58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 030CED0123DBAA6600AEFB58 /* LaunchScreen.storyboard */; };
 		030CED0E23DBAA6700AEFB58 /* TodayWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030CED0D23DBAA6700AEFB58 /* TodayWeatherTests.swift */; };
+		030CED1A23DC69AA00AEFB58 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030CED1923DC69A900AEFB58 /* UIViewExtension.swift */; };
+		030CED2123DCA0BB00AEFB58 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030CED2023DCA0BB00AEFB58 /* UITableViewExtension.swift */; };
+		030CED2423DCA6B200AEFB58 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030CED2223DCA6B200AEFB58 /* DetailTableViewCell.swift */; };
+		030CED2523DCA6B200AEFB58 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 030CED2323DCA6B200AEFB58 /* DetailTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		030CED0923DBAA6700AEFB58 /* TodayWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodayWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		030CED0D23DBAA6700AEFB58 /* TodayWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherTests.swift; sourceTree = "<group>"; };
 		030CED0F23DBAA6700AEFB58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		030CED1923DC69A900AEFB58 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		030CED2023DCA0BB00AEFB58 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
+		030CED2223DCA6B200AEFB58 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		030CED2323DCA6B200AEFB58 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +85,8 @@
 		030CECF523DBAA6300AEFB58 /* TodayWeather */ = {
 			isa = PBXGroup;
 			children = (
+				030CED1B23DC980600AEFB58 /* View */,
+				030CED1823DC697000AEFB58 /* Extension */,
 				030CECF623DBAA6300AEFB58 /* AppDelegate.swift */,
 				030CECF823DBAA6300AEFB58 /* SceneDelegate.swift */,
 				030CECFA23DBAA6300AEFB58 /* MainViewController.swift */,
@@ -94,6 +104,24 @@
 				030CED0F23DBAA6700AEFB58 /* Info.plist */,
 			);
 			path = TodayWeatherTests;
+			sourceTree = "<group>";
+		};
+		030CED1823DC697000AEFB58 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				030CED1923DC69A900AEFB58 /* UIViewExtension.swift */,
+				030CED2023DCA0BB00AEFB58 /* UITableViewExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		030CED1B23DC980600AEFB58 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				030CED2223DCA6B200AEFB58 /* DetailTableViewCell.swift */,
+				030CED2323DCA6B200AEFB58 /* DetailTableViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				030CED0323DBAA6600AEFB58 /* LaunchScreen.storyboard in Resources */,
+				030CED2523DCA6B200AEFB58 /* DetailTableViewCell.xib in Resources */,
 				030CED0023DBAA6600AEFB58 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,8 +225,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				030CED2423DCA6B200AEFB58 /* DetailTableViewCell.swift in Sources */,
 				030CECFB23DBAA6300AEFB58 /* MainViewController.swift in Sources */,
 				030CECF723DBAA6300AEFB58 /* AppDelegate.swift in Sources */,
+				030CED1A23DC69AA00AEFB58 /* UIViewExtension.swift in Sources */,
+				030CED2123DCA0BB00AEFB58 /* UITableViewExtension.swift in Sources */,
 				030CECF923DBAA6300AEFB58 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

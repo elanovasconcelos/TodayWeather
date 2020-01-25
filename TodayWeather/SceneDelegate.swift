@@ -30,7 +30,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func initialViewController() -> UIViewController {
-        return MainViewController()
+        
+        let mainViewController = MainViewController()
+        let navigationController = UINavigationController(rootViewController: mainViewController)
+        
+        return navigationController
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
