@@ -8,7 +8,9 @@
 
 import UIKit
 
-struct Forecast {
-
-    
+struct Forecast: Decodable {
+    let latitude: Double
+    let longitude: Double
+    let timezone: String
+    let currently: Currently
 }
