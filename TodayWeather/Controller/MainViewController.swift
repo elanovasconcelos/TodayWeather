@@ -51,7 +51,7 @@ final class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        viewModel.update()
+        viewModel.update(with: Location.debug())
     }
     
     private func setupTableView() {

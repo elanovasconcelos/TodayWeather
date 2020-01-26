@@ -14,9 +14,10 @@ final class ServerModel: NSObject {
     
     private let baseUrlString = "https://api.darksky.net/forecast/2bb07c3bece89caf533ac9a5d23d8417/"
 
-    func forecast(completion: @escaping (Result<Forecast, ServerError>) -> Void) {
+    func forecast(location: Location ,completion: @escaping (Result<Forecast, ServerError>) -> Void) {
         
-        let urlString = "\(baseUrlString)59.337239,18.062381"
+        let locationString = "\(location.latitude),\(location.longitude)"
+        let urlString = baseUrlString + locationString
         let url = URL(string: urlString)
         
         request(url: url, completion: completion)

@@ -43,11 +43,11 @@ final class MainViewModel: NSObject {
 
 //MARK: - Public Functions
 extension MainViewModel {
-    func update() {
-        server?.forecast { [weak self] (result) in
+    func update(with location: Location) {
+        server?.forecast(location: location) { [weak self] (result) in
             switch result {
             case .failure(let error):
-                print("error: \(error)")
+                print("[MainViewModel] error: \(error)")
             case .success(let forecast):
                 self?.forecast = forecast
             }
