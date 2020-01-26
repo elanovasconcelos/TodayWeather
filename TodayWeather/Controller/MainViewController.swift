@@ -15,14 +15,25 @@ class MainViewController: UIViewController {
         let newTableView = UITableView(frame: .zero)
         
         newTableView.register(nibNameAndIdentifier: DetailTableViewCell.identifier)
-        newTableView.backgroundColor = .blue
         newTableView.rowHeight = UITableView.automaticDimension
         newTableView.estimatedRowHeight = 44
         
         return newTableView
     }()
     
-    private let viewModel = MainViewModel()
+    private let viewModel: MainViewModel
+    
+    init(viewModel: MainViewModel = MainViewModel()) {
+        self.viewModel = viewModel
+
+        super.init(nibName: nil, bundle: nil)
+        
+        self.viewModel.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: -
     override func viewDidLoad() {
@@ -30,6 +41,12 @@ class MainViewController: UIViewController {
         // Do any additional setup after loading the view.
     
         setupTableView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        viewModel.update()
     }
     
     private func setupTableView() {
@@ -44,6 +61,18 @@ class MainViewController: UIViewController {
                               trailing: view.safeAreaLayoutGuide.trailingAnchor)
     }
 
+    private func reloadTable() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
+
+//MARK: -
+extension MainViewController: MainViewModelDelegate {
+    func mainViewModelChangedData(_ model: MainViewModel) {
+        reloadTable()
+    }
 }
 
 // MARK: - UICollectionViewDataSource, UICollectionViewDelegate

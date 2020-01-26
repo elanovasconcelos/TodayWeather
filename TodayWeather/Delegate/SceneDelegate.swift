@@ -33,6 +33,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let mainViewController = MainViewController()
         let navigationController = UINavigationController(rootViewController: mainViewController)
+
+        mainViewController.willMove(toParent: navigationController)
         
         return navigationController
     }
