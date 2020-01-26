@@ -8,13 +8,15 @@
 
 import UIKit
 
-final class ServerModel: NSObject {
+final class ServerModel: NSObject, ServerProtocol {
 
     static let shared = ServerModel()
     
     private let baseUrlString = "https://api.darksky.net/forecast/2bb07c3bece89caf533ac9a5d23d8417/"
 
-    func forecast(location: Location ,completion: @escaping (Result<Forecast, ServerError>) -> Void) {
+    func forecast(location: Location, completion: @escaping (Result<Forecast, ServerError>) -> Void) {
+        
+        //TODO: remove other API fields from result
         
         let locationString = "\(location.latitude),\(location.longitude)"
         let urlString = baseUrlString + locationString
@@ -60,12 +62,12 @@ final class ServerModel: NSObject {
 }
 
 //MARK: - Enum
-extension ServerModel {
-    enum ServerError: Error {
-        case api
-        case url
-        case respone
-        case noData
-        case decoder
-    }
+enum ServerError: Error {
+    case api
+    case url
+    case respone
+    case noData
+    case decoder
 }
+    
+

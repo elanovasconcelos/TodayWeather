@@ -16,7 +16,7 @@ final class MainViewModel: NSObject {
 
     static let temperatureSymbol = "°"
     
-    private let server: ServerModel?
+    private let server: ServerProtocol?
     private var forecast: Forecast? {
         didSet {
             setup()
@@ -30,9 +30,13 @@ final class MainViewModel: NSObject {
     private(set) var detailCount: Int = 0
     private(set) var temperature: String = ""
     
-    init(forecast: Forecast? = nil, server: ServerModel? = ServerModel.shared) {
+    init(forecast: Forecast? = nil, server: ServerProtocol? = ServerModel.shared) {
         self.forecast = forecast
         self.server = server
+        
+        super.init()
+        
+        setup()
     }
     
     private func setup() {
