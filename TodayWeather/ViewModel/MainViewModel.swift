@@ -14,17 +14,37 @@ protocol MainViewModelDelegate: class {
 
 final class MainViewModel: NSObject {
 
-    private let server: ServerModel
-    private var forecast: Forecast? { didSet { delegate?.mainViewModelChangedData(self) }}
+    private let server: ServerModel?
+    private var forecast: Forecast? {
+        didSet {
+            setup()
+            delegate?.mainViewModelChangedData(self)
+        }
+    }
     
     weak var delegate: MainViewModelDelegate?
     
-    init(server: ServerModel = ServerModel.shared) {
+    private(set) var wheaderImage: UIImage!
+    private(set) var detailCount: Int = 0
+    private(set) var temperature: String = ""
+    
+    init(forecast: Forecast? = nil, server: ServerModel? = ServerModel.shared) {
+        self.forecast = forecast
         self.server = server
     }
     
-    func update() { 
-        server.forecast { [weak self] (result) in
+    private func setup() {
+        wheaderImage = getWheaderImage()
+        detailCount = getDetailCount()
+        temperature = getTemperature()
+    }
+    
+}
+
+//MARK: - Public Functions
+extension MainViewModel {
+    func update() {
+        server?.forecast { [weak self] (result) in
             switch result {
             case .failure(let error):
                 print("error: \(error)")
@@ -33,26 +53,49 @@ final class MainViewModel: NSObject {
             }
         }
     }
-    
-    func numberOfSections() -> Int {
-        return 1
+
+    func shouldShowRows() -> Bool {
+        return forecast != nil
     }
-    
-    func numberOfRowsInSection(_ section: Int) -> Int {
-        
-        if forecast == nil {
-            return 0
-        }
-        
-        return WeatherDetail.values().count
-    }
-    
+ 
     func detail(for indexPath: IndexPath) -> (title: String, information: String) {
         
         let weatherDetail = WeatherDetail.forIndex(indexPath.row)
         let currentInformation = information(for: weatherDetail)
         
         return (title: weatherDetail.rawValue, information: currentInformation)
+    }
+}
+
+//MARK: - Private
+extension MainViewModel {
+    
+    private func getTemperature() -> String {
+        guard let newValue = forecast?.currently.temperature else { return "" }
+
+        return "\(toCelsius(newValue))°"
+    }
+    
+    private func toCelsius(_ fahrenheit: Double) -> Int {
+        return Int((fahrenheit - 32) * 5 / 9)
+    }
+    
+    private func getWheaderImage() -> UIImage {
+           
+       if let imageName = forecast?.currently.icon, let image = UIImage(named: imageName) {
+           return image
+       }
+       
+       return UIImage(named: "clear-day")!
+    }
+    
+    private func getDetailCount() -> Int {
+        
+        if !shouldShowRows() {
+            return 0
+        }
+        
+        return WeatherDetail.values().count
     }
     
     private func information(for detail: WeatherDetail) -> String {
@@ -77,7 +120,7 @@ final class MainViewModel: NSObject {
     }
 }
 
-//MARK: -
+//MARK: - Enum
 extension MainViewModel {
     enum WeatherDetail: String {
         case temperature = "Temperature"
@@ -86,6 +129,7 @@ extension MainViewModel {
         case windSpeed = "Wind speed"
         case uvIndex = "UV index"
         
+        /// It returns all the WeatherDetail values. It's the row order too.
         static func values() -> [WeatherDetail] {
             return [
             .temperature,

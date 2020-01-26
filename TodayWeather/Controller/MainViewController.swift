@@ -8,21 +8,24 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
 
     private let tableView: UITableView = {
        
         let newTableView = UITableView(frame: .zero)
         
         newTableView.register(nibNameAndIdentifier: DetailTableViewCell.identifier)
+        newTableView.register(nibNameAndIdentifier: WeatherImageTableViewCell.identifier)
+
         newTableView.rowHeight = UITableView.automaticDimension
         newTableView.estimatedRowHeight = 44
         
         return newTableView
     }()
     
-    private let viewModel: MainViewModel
+    private var viewModel: MainViewModel { didSet{ reloadTable() } }
     
+    //MARK: -
     init(viewModel: MainViewModel = MainViewModel()) {
         self.viewModel = viewModel
 
@@ -32,14 +35,16 @@ class MainViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        
+        self.viewModel = MainViewModel()
+        
+        super.init(coder: coder)
     }
     
     //MARK: -
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    
+
         setupTableView()
     }
     
@@ -68,7 +73,7 @@ class MainViewController: UIViewController {
     }
 }
 
-//MARK: -
+//MARK: - MainViewModelDelegate
 extension MainViewController: MainViewModelDelegate {
     func mainViewModelChangedData(_ model: MainViewModel) {
         reloadTable()
@@ -79,15 +84,35 @@ extension MainViewController: MainViewModelDelegate {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return detailCell(tableView: tableView, indexPath: indexPath)
+        
+        guard let section = TableSection(rawValue: indexPath.section) else {
+            
+            assertionFailure("[MainViewController] Invalid section \(indexPath.section)")
+            return UITableViewCell()
+        }
+        
+        switch section {
+        case .detail: return detailCell(tableView: tableView, indexPath: indexPath)
+        case .image: return weatherImageCell(tableView: tableView, indexPath: indexPath)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRowsInSection(section)
+        
+        if !viewModel.shouldShowRows() {
+            return 0
+        }
+        
+        guard let tableSection = TableSection(rawValue: section) else { return 0 }
+        
+        switch tableSection {
+        case .image: return 1
+        case .detail: return viewModel.detailCount
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.numberOfSections()
+        return TableSection.values().count
     }
 }
 
@@ -103,5 +128,27 @@ private extension MainViewController {
         cell.informationLabel.text = detail.information
         
         return cell
+    }
+    
+    func weatherImageCell(tableView: UITableView, indexPath: IndexPath) -> WeatherImageTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: WeatherImageTableViewCell.identifier, for: indexPath) as! WeatherImageTableViewCell
+        
+        cell.weatherImageView.image = viewModel.wheaderImage
+        cell.temperatureLabel.text = viewModel.temperature
+        
+        return cell
+    }
+}
+
+//MARK: - Enum
+extension MainViewController {
+    enum TableSection: Int {
+        case image
+        case detail
+        
+        /// It returns all the TableSection values. It's the section order too.
+        static func values() -> [TableSection] {
+            return [.image, .detail]
+        }
     }
 }
