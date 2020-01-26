@@ -8,17 +8,16 @@
 
 import UIKit
 
-class WeatherImageTableViewCell: UITableViewCell {
+final class WeatherImageTableViewCell: UITableViewCell {
 
+    @IBOutlet var weatherImageView: UIImageView!
+    @IBOutlet var temperatureLabel: BaseLabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+  
     
 }
