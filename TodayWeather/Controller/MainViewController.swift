@@ -55,9 +55,9 @@ final class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        //viewModel.update(with: Location.debug())
         locationModel.requestWhenInUseAuthorization()
         locationModel.updateLocation()
+        //TODO: add loading while getting information
     }
     
     private func setupTableView() {

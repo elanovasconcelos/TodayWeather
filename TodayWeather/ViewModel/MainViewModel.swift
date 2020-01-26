@@ -66,7 +66,7 @@ extension MainViewModel {
         let weatherDetail = WeatherDetail.forIndex(indexPath.row)
         let currentInformation = information(for: weatherDetail)
         
-        return (title: weatherDetail.rawValue, information: currentInformation)
+        return (title: weatherDetail.rawValue + ":", information: currentInformation)
     }
 }
 
