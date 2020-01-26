@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class DetailTableViewCell: UITableViewCell {
+final class DetailTableViewCell: BaseTableViewCell {
 
     static let identifier = "DetailTableViewCell"
     

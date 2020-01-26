@@ -8,8 +8,10 @@
 
 import UIKit
 
-final class WeatherImageTableViewCell: UITableViewCell {
+final class WeatherImageTableViewCell: BaseTableViewCell {
 
+    static let identifier = "WeatherImageTableViewCell"
+    
     @IBOutlet var weatherImageView: UIImageView!
     @IBOutlet var temperatureLabel: BaseLabel!
     

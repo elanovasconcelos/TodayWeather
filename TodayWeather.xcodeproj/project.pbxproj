@@ -24,6 +24,7 @@
 		0331446123DCD96500B464D8 /* ServerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0331446023DCD96500B464D8 /* ServerModel.swift */; };
 		0331446823DDBC2300B464D8 /* WeatherImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0331446623DDBC2300B464D8 /* WeatherImageTableViewCell.swift */; };
 		0331446923DDBC2300B464D8 /* WeatherImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0331446723DDBC2300B464D8 /* WeatherImageTableViewCell.xib */; };
+		03F6BB6323DDE7BE00C5332A /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F6BB6223DDE7BE00C5332A /* BaseTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		0331446023DCD96500B464D8 /* ServerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerModel.swift; sourceTree = "<group>"; };
 		0331446623DDBC2300B464D8 /* WeatherImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherImageTableViewCell.swift; sourceTree = "<group>"; };
 		0331446723DDBC2300B464D8 /* WeatherImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherImageTableViewCell.xib; sourceTree = "<group>"; };
+		03F6BB6223DDE7BE00C5332A /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				030CED2723DCAE4600AEFB58 /* BaseLabel.swift */,
+				03F6BB6223DDE7BE00C5332A /* BaseTableViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				030CED1A23DC69AA00AEFB58 /* UIViewExtension.swift in Sources */,
 				030CED2123DCA0BB00AEFB58 /* UITableViewExtension.swift in Sources */,
 				030CECF923DBAA6300AEFB58 /* SceneDelegate.swift in Sources */,
+				03F6BB6323DDE7BE00C5332A /* BaseTableViewCell.swift in Sources */,
 				030CED2B23DCB36C00AEFB58 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
