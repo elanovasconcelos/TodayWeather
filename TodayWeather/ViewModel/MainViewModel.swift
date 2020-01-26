@@ -30,6 +30,12 @@ final class MainViewModel: NSObject {
     private(set) var detailCount: Int = 0
     private(set) var temperature: String = ""
     
+    
+    /// ViewModel for MainViewController
+    /// - Parameters:
+    ///   - forecast: Information for the model. Deafult value is nil. It will be updated insternaly
+    ///               by the `server` after call `update` function
+    ///   - server: API model. Deafult value is `ServerModel.shared`
     init(forecast: Forecast? = nil, server: ServerProtocol? = ServerModel.shared) {
         self.forecast = forecast
         self.server = server
@@ -64,7 +70,9 @@ extension MainViewModel {
     func shouldShowRows() -> Bool {
         return forecast != nil
     }
- 
+    
+    /// Detail information from `Forecast`. The order if from WeatherDetail `forIndex` function.
+    /// - Parameter indexPath: IndexPath for the detail. The field `section` is ignored for now.
     func detail(for indexPath: IndexPath) -> (title: String, information: String) {
         
         let weatherDetail = WeatherDetail.forIndex(indexPath.row)
