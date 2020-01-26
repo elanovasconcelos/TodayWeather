@@ -16,8 +16,4 @@ struct Location {
         self.latitude = latitude
         self.longitude = longitude
     }
-    
-    static func debug() -> Location {
-        return Location(latitude: 59.3310373, longitude: 18.062381)
-    }
 }

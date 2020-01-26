@@ -14,10 +14,3 @@ struct Forecast: Decodable {
     let timezone: String
     let currently: Currently
 }
-
-//MARK: - Debug
-extension Forecast {
-    static func debugValue() -> Forecast {
-        return Forecast(latitude: 1, longitude: 1, timezone: "Europe/Stockholm", currently: Currently.debugValue())
-    }
-}
