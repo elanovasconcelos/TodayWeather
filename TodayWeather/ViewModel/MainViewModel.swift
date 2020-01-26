@@ -14,6 +14,8 @@ protocol MainViewModelDelegate: class {
 
 final class MainViewModel: NSObject {
 
+    static let temperatureSymbol = "°"
+    
     private let server: ServerModel?
     private var forecast: Forecast? {
         didSet {
@@ -48,6 +50,7 @@ extension MainViewModel {
             switch result {
             case .failure(let error):
                 print("[MainViewModel] error: \(error)")
+                //TODO: show error to user
             case .success(let forecast):
                 self?.forecast = forecast
             }
@@ -73,11 +76,14 @@ extension MainViewModel {
     private func getTemperature() -> String {
         guard let newValue = forecast?.currently.temperature else { return "" }
 
-        return "\(toCelsius(newValue))°"
+        return "\(Int(toCelsius(newValue)))" + MainViewModel.temperatureSymbol
     }
     
-    private func toCelsius(_ fahrenheit: Double) -> Int {
-        return Int((fahrenheit - 32) * 5 / 9)
+    private func toCelsius(_ fahrenheit: Double?) -> Double {
+        
+        guard let fahrenheit = fahrenheit else { return 0 }
+        
+        return (fahrenheit - 32) * 5 / 9
     }
     
     private func getWheaderImage() -> UIImage {
@@ -99,13 +105,17 @@ extension MainViewModel {
     }
     
     private func information(for detail: WeatherDetail) -> String {
-        return doubleFormat(doubleInformation(for: detail))
+        
+        switch detail {
+        case .apparentTemperature: return doubleFormat(doubleInformation(for: detail)) + MainViewModel.temperatureSymbol
+        default:
+            return doubleFormat(doubleInformation(for: detail))
+        }
     }
     
     private func doubleInformation(for detail: WeatherDetail) -> Double? {
         switch detail {
-        case .apparentTemperature: return forecast?.currently.apparentTemperature
-        case .temperature: return forecast?.currently.temperature
+        case .apparentTemperature: return toCelsius(forecast?.currently.apparentTemperature)
         case .humidity: return forecast?.currently.humidity
         case .windSpeed: return forecast?.currently.windSpeed
         case .uvIndex: return forecast?.currently.uvIndex
@@ -116,14 +126,13 @@ extension MainViewModel {
         
         guard let value = value else { return ""}
         
-        return "\(value)"
+        return String(format: "%.2f", value)
     }
 }
 
 //MARK: - Enum
 extension MainViewModel {
     enum WeatherDetail: String {
-        case temperature = "Temperature"
         case apparentTemperature = "Apparent temperature"
         case humidity = "Humidity"
         case windSpeed = "Wind speed"
@@ -132,7 +141,6 @@ extension MainViewModel {
         /// It returns all the WeatherDetail values. It's the row order too.
         static func values() -> [WeatherDetail] {
             return [
-            .temperature,
             .apparentTemperature,
             .humidity,
             .windSpeed,

@@ -24,19 +24,23 @@ final class MainViewController: UIViewController {
     }()
     
     private var viewModel: MainViewModel { didSet{ reloadTable() } }
+    private var locationModel: LocationModel
     
     //MARK: -
-    init(viewModel: MainViewModel = MainViewModel()) {
+    init(viewModel: MainViewModel = MainViewModel(), locationModel: LocationModel = LocationModel()) {
         self.viewModel = viewModel
+        self.locationModel = locationModel
 
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel.delegate = self
+        self.locationModel.delegate = self
     }
     
     required init?(coder: NSCoder) {
         
         self.viewModel = MainViewModel()
+        self.locationModel = LocationModel()
         
         super.init(coder: coder)
     }
@@ -51,7 +55,9 @@ final class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        viewModel.update(with: Location.debug())
+        //viewModel.update(with: Location.debug())
+        locationModel.requestWhenInUseAuthorization()
+        locationModel.updateLocation()
     }
     
     private func setupTableView() {
@@ -70,6 +76,14 @@ final class MainViewController: UIViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+}
+
+//MARK: -
+extension MainViewController: LocationModelDelegate {
+    func locationModel(_ model: LocationModel, didChange location: Location) {
+        print("location: \(location)")
+        viewModel.update(with: location)
     }
 }
 

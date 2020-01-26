@@ -20,6 +20,8 @@ final class ServerModel: NSObject {
         let urlString = baseUrlString + locationString
         let url = URL(string: urlString)
         
+        print("urlString: \(urlString)")
+        
         request(url: url, completion: completion)
     }
     
