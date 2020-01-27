@@ -21,9 +21,7 @@ final class ServerModel: NSObject, ServerProtocol {
         let locationString = "\(location.latitude),\(location.longitude)"
         let urlString = baseUrlString + locationString
         let url = URL(string: urlString)
-        
-        print("urlString: \(urlString)")
-        
+
         request(url: url, completion: completion)
     }
     

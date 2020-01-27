@@ -35,6 +35,7 @@ final class MainViewController: UIViewController {
         
         self.viewModel.delegate = self
         self.locationModel.delegate = self
+        self.view.backgroundColor = .systemBackground
     }
     
     required init?(coder: NSCoder) {
@@ -61,8 +62,9 @@ final class MainViewController: UIViewController {
     }
     
     private func setupTableView() {
-        
+
         view.addSubview(tableView)
+        updateTableVisibility()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -72,8 +74,13 @@ final class MainViewController: UIViewController {
                               trailing: view.safeAreaLayoutGuide.trailingAnchor)
     }
 
+    private func updateTableVisibility() {
+        tableView.isHidden = !viewModel.shouldShowRows()
+    }
+    
     private func reloadTable() {
         DispatchQueue.main.async {
+            self.updateTableVisibility()
             self.tableView.reloadData()
         }
     }
@@ -82,7 +89,6 @@ final class MainViewController: UIViewController {
 //MARK: -
 extension MainViewController: LocationModelDelegate {
     func locationModel(_ model: LocationModel, didChange location: Location) {
-        print("location: \(location)")
         viewModel.update(with: location)
     }
 }
